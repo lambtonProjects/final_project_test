@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     var counter = 0
     var correctAnswerCounter = 0
     var choosenQuestions = [Question]()
+    var selectedAnswer = 4
+    var currentQuestion = 0
     
     
     @IBOutlet weak var question: UILabel!
@@ -31,24 +33,62 @@ class ViewController: UIViewController {
     @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    @IBAction func chbox1(_ sender: Any) {
-        
+    @IBAction func chbox1(_ sender: UIButton) {
+        sender.isSelected = true
+        checkbox2.isSelected = false
+        checkbox3.isSelected = false
+        checkbox4.isSelected = false
+        selectedAnswer = 0
+        message.text = ""
     }
-    @IBAction func chbox2(_ sender: Any) {
-        
+    @IBAction func chbox2(_ sender: UIButton) {
+        sender.isSelected = true
+        checkbox1.isSelected = false
+        checkbox3.isSelected = false
+        checkbox4.isSelected = false
+        selectedAnswer = 1
+        message.text = ""
     }
-    @IBAction func chbox3(_ sender: Any) {
-        
+    @IBAction func chbox3(_ sender: UIButton) {
+        sender.isSelected = true
+        checkbox2.isSelected = false
+        checkbox1.isSelected = false
+        checkbox4.isSelected = false
+        selectedAnswer = 2
+        message.text = ""
     }
-    @IBAction func chbox4(_ sender: Any) {
-        
+    @IBAction func chbox4(_ sender: UIButton) {
+        sender.isSelected = true
+        checkbox2.isSelected = false
+        checkbox3.isSelected = false
+        checkbox1.isSelected = false
+        selectedAnswer = 3
+        message.text = ""
     }
     
     @IBAction func previous(_ sender: Any) {
-        
+        currentQuestion = currentQuestion - 1
+        setQuestion()
     }
     
     @IBAction func next(_ sender: Any) {
+        if selectedAnswer == 4 {
+            message.text = "Choose some answer!"
+        } else {
+            if selectedAnswer == choosenQuestions[currentQuestion].correctAnswerIndex {
+                correctAnswerCounter = correctAnswerCounter + 1
+            }
+            if currentQuestion == 4 {
+                //todo move to the last screen with correctAnswerCounter value
+            } else {
+                checkbox1.isSelected = false
+                checkbox2.isSelected = false
+                checkbox3.isSelected = false
+                checkbox4.isSelected = false
+                currentQuestion = currentQuestion + 1
+                setQuestion()
+            }
+        }
         
     }
     
@@ -58,8 +98,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         fillData()
         choosenQuestions = chooseQuestions()
-        prevButton.isHidden = true
-        setQuestion(num: 0)
+        prevButton.isHidden = true  //todo set is as hidden == false if back will be supported. nedd to save previous choosen values and update correctAnswerCounter
+        setQuestion()
     }
 
     func fillData(){
@@ -95,13 +135,13 @@ class ViewController: UIViewController {
         return chQuest
     }
     
-    func setQuestion(num: Int){
-        questionNumber.text = String(num + 1) + "/5"
-        question.text = choosenQuestions[num].question
-        answer1.text = choosenQuestions[num].answers[0]
-        answer2.text = choosenQuestions[num].answers[1]
-        answer3.text = choosenQuestions[num].answers[2]
-        answer4.text = choosenQuestions[num].answers[3]
+    func setQuestion(){
+        questionNumber.text = String(currentQuestion + 1) + "/5"
+        question.text = choosenQuestions[currentQuestion].question
+        answer1.text = choosenQuestions[currentQuestion].answers[0]
+        answer2.text = choosenQuestions[currentQuestion].answers[1]
+        answer3.text = choosenQuestions[currentQuestion].answers[2]
+        answer4.text = choosenQuestions[currentQuestion].answers[3]
         
         checkbox1.isSelected = false
         checkbox1.isSelected = false
@@ -110,7 +150,7 @@ class ViewController: UIViewController {
         
         message.text = ""
         
-        if num == 4 {
+        if currentQuestion == 4 {
             nextButton.setTitle("finish", for: .normal)
         } else {
             nextButton.setTitle("next>", for: .normal)
