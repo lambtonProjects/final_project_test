@@ -10,11 +10,56 @@ import UIKit
 class ViewController: UIViewController {
 
     var questions = [Question]()
+    var counter = 0
+    var correctAnswerCounter = 0
+    var choosenQuestions = [Question]()
+    
+    
+    @IBOutlet weak var question: UILabel!
+    @IBOutlet weak var questionNumber: UILabel!
+    @IBOutlet weak var answer1: UILabel!
+    @IBOutlet weak var answer2: UILabel!
+    @IBOutlet weak var answer3: UILabel!
+    @IBOutlet weak var answer4: UILabel!
+    
+    @IBOutlet weak var checkbox1: UIButton!
+    @IBOutlet weak var checkbox2: UIButton!
+    @IBOutlet weak var checkbox3: UIButton!
+    @IBOutlet weak var checkbox4: UIButton!
+    @IBOutlet weak var message: UILabel!
+    
+    @IBOutlet weak var prevButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBAction func chbox1(_ sender: Any) {
+        
+    }
+    @IBAction func chbox2(_ sender: Any) {
+        
+    }
+    @IBAction func chbox3(_ sender: Any) {
+        
+    }
+    @IBAction func chbox4(_ sender: Any) {
+        
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        
+    }
+    
+    @IBAction func next(_ sender: Any) {
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         fillData()
+        choosenQuestions = chooseQuestions()
+        prevButton.isHidden = true
+        setQuestion(num: 0)
     }
 
     func fillData(){
@@ -39,6 +84,37 @@ class ViewController: UIViewController {
         questions.append(Question(question: "What is the coldest sea on Earth?", answers: ["White Sea", "Persian Gulf", "Baltic Sea", "Caspian Sea"], correctAnswerIndex: 0))
         
         //here will be added other 9 questions
+    }
+    
+    func chooseQuestions() -> [Question]{
+        var chQuest = [Question]()
+        let shuffeledQuestions = questions.shuffled()
+        for i in 0..<5 {
+            chQuest.append(shuffeledQuestions[i])
+        }
+        return chQuest
+    }
+    
+    func setQuestion(num: Int){
+        questionNumber.text = String(num + 1) + "/5"
+        question.text = choosenQuestions[num].question
+        answer1.text = choosenQuestions[num].answers[0]
+        answer2.text = choosenQuestions[num].answers[1]
+        answer3.text = choosenQuestions[num].answers[2]
+        answer4.text = choosenQuestions[num].answers[3]
+        
+        checkbox1.isSelected = false
+        checkbox1.isSelected = false
+        checkbox1.isSelected = false
+        checkbox1.isSelected = false
+        
+        message.text = ""
+        
+        if num == 4 {
+            nextButton.setTitle("finish", for: .normal)
+        } else {
+            nextButton.setTitle("next>", for: .normal)
+        }
     }
 
 }
