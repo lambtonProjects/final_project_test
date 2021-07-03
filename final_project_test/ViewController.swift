@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
 
     var questions = [Question]()
-    var counter = 0
     var correctAnswerCounter = 0
     var choosenQuestions = [Question]()
     var selectedAnswer = 4
@@ -80,6 +79,8 @@ class ViewController: UIViewController {
             }
             if currentQuestion == 4 {
                 //todo move to the last screen with correctAnswerCounter value
+                // if score == 3,4 5 -> show only message (button "try again" is hidden and disabled )
+                //if sccore == 0,1,2 -> show the message and the button "try again"
             } else {
                 checkbox1.isSelected = false
                 checkbox2.isSelected = false
@@ -97,9 +98,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         fillData()
-        choosenQuestions = chooseQuestions()
         prevButton.isHidden = true  //todo set is as hidden == false if back will be supported. nedd to save previous choosen values and update correctAnswerCounter
-        setQuestion()
+        startAgain()
     }
 
     func fillData(){
@@ -156,6 +156,13 @@ class ViewController: UIViewController {
         } else {
             nextButton.setTitle("next>", for: .normal)
         }
+    }
+    
+    func startAgain(){
+        choosenQuestions = chooseQuestions()
+        correctAnswerCounter = 0
+        currentQuestion = 0
+        setQuestion()
     }
 
 }
