@@ -137,6 +137,7 @@ class ViewController: UIViewController {
     
     func setQuestion(){
         questionNumber.text = String(currentQuestion + 1) + "/5"
+        selectedAnswer = 4
         question.text = choosenQuestions[currentQuestion].question
         answer1.text = choosenQuestions[currentQuestion].answers[0]
         answer2.text = choosenQuestions[currentQuestion].answers[1]
