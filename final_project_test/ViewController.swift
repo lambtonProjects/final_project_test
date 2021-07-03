@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var checkbox4: UIButton!
     @IBOutlet weak var message: UILabel!
     
-    @IBOutlet weak var prevButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
     @IBAction func chbox1(_ sender: UIButton) {
@@ -64,12 +63,6 @@ class ViewController: UIViewController {
         selectedAnswer = 3
         message.text = ""
     }
-    
-    @IBAction func previous(_ sender: Any) {
-        currentQuestion = currentQuestion - 1
-        setQuestion()
-    }
-    
     @IBAction func next(_ sender: Any) {
         if selectedAnswer == 4 {
             message.text = "Choose some answer!"
@@ -98,7 +91,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         fillData()
-        prevButton.isHidden = true  //todo set is as hidden == false if back will be supported. nedd to save previous choosen values and update correctAnswerCounter
         startAgain()
     }
 

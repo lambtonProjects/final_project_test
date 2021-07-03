@@ -23,14 +23,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYe-oh-K0Y">
-                                <rect key="frame" x="42" y="670" width="68" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="&lt;previous"/>
-                                <connections>
-                                    <action selector="previous:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mgp-PH-zTf"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4K9-do-znF">
                                 <rect key="frame" x="314" y="670" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -132,7 +124,6 @@
                         <outlet property="checkbox4" destination="ydN-vw-RVD" id="IcY-6x-ozl"/>
                         <outlet property="message" destination="o2p-Kp-XLW" id="lGE-Ji-pbV"/>
                         <outlet property="nextButton" destination="4K9-do-znF" id="s6C-s3-FjJ"/>
-                        <outlet property="prevButton" destination="fYe-oh-K0Y" id="AjN-Mq-UtB"/>
                         <outlet property="question" destination="Trp-CZ-q3h" id="Q8W-bW-YDp"/>
                         <outlet property="questionNumber" destination="neM-jl-Mzb" id="s5N-pz-d22"/>
                     </connections>
