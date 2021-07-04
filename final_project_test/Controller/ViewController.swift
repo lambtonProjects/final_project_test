@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         if selectedAnswer == 4 {
             message.text = "Choose some answer!"
         } else {
-            if selectedAnswer == choosenQuestions[currentQuestion].correctAnswerIndex {
+            if selectedAnswer == choosenQuestions[currentQuestion].correctAnswerValue {
                 correctAnswerCounter = correctAnswerCounter + 1
             }
             if currentQuestion == 4 {
@@ -90,32 +90,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        fillData()
+        questions = Question.fillData()
         startAgain()
-    }
-
-    func fillData(){
-        questions.append(Question(question: "What is Earth's largest continent?", answers: ["Asia", "Antarctica", "Africa", "Europe"], correctAnswerIndex: 0))
-        
-        questions.append(Question(question: "What country has the most coastline?", answers: ["Russia", "Canada", "China", "United States"], correctAnswerIndex: 1))
-        
-        questions.append(Question(question: "What is the largest country in South America?", answers: ["Columbia", "Brazil", "Argentina", "Peru"], correctAnswerIndex: 1))
-        
-        questions.append(Question(question: "What is the tallest mountain in the world?", answers: ["Mount Kilamanjaro", "Aconcagua", "Qogir", "Mount Everest"], correctAnswerIndex: 3))
-        
-        questions.append(Question(question: "What city is the capital of Australia?", answers: ["Melbourne", "Perth", "Canberra", "Sydney"], correctAnswerIndex: 2))
-        
-        questions.append(Question(question: "What is the smallest independent country on Earth?", answers: ["Monaco", "Nauru", "Grenada", "Vatican City"], correctAnswerIndex: 3))
-        
-        questions.append(Question(question: "What is the deepest point in Earth's oceans?", answers: ["Tonga Trench", "Eurasian Basin", "Java Trench", "Mariana Trench"], correctAnswerIndex: 3))
-        
-        questions.append(Question(question: "What continent contains the most fresh water?", answers: ["North America", "Asia", "Antarctica", "Africa"], correctAnswerIndex: 2))
-        
-        questions.append(Question(question: "What ocean is home to 75% of the Earth's volcanoes?", answers: ["Pacific", "Indian", "Arctic", "Atlantic"], correctAnswerIndex: 0))
-        
-        questions.append(Question(question: "What is the coldest sea on Earth?", answers: ["White Sea", "Persian Gulf", "Baltic Sea", "Caspian Sea"], correctAnswerIndex: 0))
-        
-        //here will be added other 9 questions
     }
     
     func chooseQuestions() -> [Question]{
@@ -131,10 +107,10 @@ class ViewController: UIViewController {
         questionNumber.text = String(currentQuestion + 1) + "/5"
         selectedAnswer = 4
         question.text = choosenQuestions[currentQuestion].question
-        answer1.text = choosenQuestions[currentQuestion].answers[0]
-        answer2.text = choosenQuestions[currentQuestion].answers[1]
-        answer3.text = choosenQuestions[currentQuestion].answers[2]
-        answer4.text = choosenQuestions[currentQuestion].answers[3]
+        answer1.text = choosenQuestions[currentQuestion].answers[0].text
+        answer2.text = choosenQuestions[currentQuestion].answers[1].text
+        answer3.text = choosenQuestions[currentQuestion].answers[2].text
+        answer4.text = choosenQuestions[currentQuestion].answers[3].text
         
         checkbox1.isSelected = false
         checkbox1.isSelected = false
